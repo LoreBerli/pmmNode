@@ -115,11 +115,11 @@ public class Manager {
     //if(!(n instanceof Actuator)){
     if (selectedSource != null) {
       selectedSource.clicked();
-      visual.addToBuff(selectedSource);
+      //visual.addToBuff(selectedSource);
     }
     selectedSource = n;
     n.clicked();
-    delay(100);
+    //delay(100);
     // }
   }
   public Node getNodeById(int id) {
@@ -138,7 +138,7 @@ public class Manager {
     
     if (selectedSource !=null && !(n instanceof Sensor)  && !(selectedSource instanceof Actuator)) {//se non esiste già un nodo sorgente e quello selezionato non è un sensore
       selectedDrain =n; //pongo il nuovo nodo a pozzo
-      delay(100);//gesù
+      //delay(100);//gesù
       if (!selectedSource.isSon(selectedDrain)) {//se il nuovo pozzo NON è già figlio della sorgente
         //cons.add(new Connection(selectedSource, selectedDrain));//c'è bisogno di Connection??
         selectedSource.addSon(selectedDrain);
@@ -187,7 +187,7 @@ public class Manager {
 
         if (n==selectedSource) {
           selectedSource.clicked();
-          delay(100);
+          //delay(100);
           visual.majorDraw();
           selectedSource=null;
         }

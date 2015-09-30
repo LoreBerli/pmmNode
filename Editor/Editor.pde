@@ -6,6 +6,7 @@ public Manager boss;
 public VisualManager visual;
 public Node[] arr;      //inutile??
 public Parser parser;
+//---------------GUI------------------
 Textfield nameText;     //casella testo Nome nodo
 Textfield comText;      //casella testo COM nodo
 Textfield descText;     //casella testo Descrizione nodo
@@ -14,21 +15,20 @@ Textfield savePath;     //casella testo salva configurazione
 Textarea testo;         //casella testo info nodo
 Button load;            //bottone caricamento
 Button save;            //bottone salvataggio
-Button okbutt;          //da rimuovere
-boolean moving;         //TRUE quando un nodo sta venendo spostato
 public Button[] btns;   //array dei bottoni-funzione
-int time;
-//public Panel info;     da rimuovere
+//----------------------------------
+boolean moving;         //TRUE quando un nodo sta venendo spostato
+
 
 void setup() {
   size(1024, 700);      //dimensioni hard coded. TODO: adattabile? Forse
-  //fullScreen();
   frame.setTitle("EDITOR Noduino");
   moving=false;
+  //---------------GUI------------------
   cp5 = new ControlP5(this);//controller della GUI
   cp5.addButton("Sensore", 0.0, 4, 2, 60, 32);
   cp5.addButton("Attuatore", 1.0, 70, 2, 60, 32);
-  cp5.addButton("CLEAR", 1.0, 136, 2, 60, 32);
+  cp5.addButton("CLEAR", 1.0, 280, 2, 60, 32);
   cp5.addButton("+", 1.0, 2, 74, 16, 16);
   cp5.addButton("-", 1.0, 20, 74, 16, 16);
   loadPath = cp5.addTextfield("LoadConfig").setPosition(832, 2).setSize(122, 20).setColor(color(0)).setColorBackground(color(255));
@@ -38,9 +38,9 @@ void setup() {
   nameText = cp5.addTextfield("name").setPosition(4, 38).setSize(80, 20).setColor(color(0)).setColorBackground(color(255));
   comText = cp5.addTextfield("COM").setPosition(88, 38).setSize(60, 20).setColor(color(0)).setColorBackground(color(255));
   descText = cp5.addTextfield("Description").setPosition(152, 38).setSize(188, 20).setColor(color(0)).setColorBackground(color(255));
-  cp5.addButton("Carica Funzioni", 1.0, 206, 2, 64, 32);
+  //cp5.addButton("Carica Funzioni", 1.0, 206, 2, 64, 32);
   testo = cp5.addTextarea("txt").setPosition(346, 2).setSize(100, 90).setLineHeight(10).setColor(color(0)).setColorBackground(color(255));
-  time = millis();
+  //----------------------------------
   boss = new Manager();
   visual = boss.getVisual();
   parser = new Parser(boss, cp5, btns);
@@ -59,8 +59,6 @@ void controlEvent(ControlEvent theEvent) { //controllore eventi della GUI
       l.save(savePath.getText());
     }
 
-
-
     if (theEvent.controller().getName()=="Sensore") {
       Node n = boss.addNode("SENS", "sensor");
       boss.relocation(n);
@@ -76,13 +74,6 @@ void controlEvent(ControlEvent theEvent) { //controllore eventi della GUI
       parser.getFunctions();
     }
 
-    if (theEvent.controller().getName()=="OK") {
-
-      String s = nameText.getText();
-      println("uscito");
-      //nameText.hide();
-      okbutt.hide();
-    }
     if (theEvent.controller().getName()=="+") {
       if (SIZE<72) {
         SIZE = SIZE+10;
@@ -131,7 +122,7 @@ void draw() {//TODO tutto il vidBuff è obsoleto, devo refreshare tutto comunque
       nameText.clear();
       comText.clear();                 /*  Svuoto le caselle di testo  */
       descText.clear();
-
+      delay(100);
       boss.setNode(tmp);               /*   passo il riferimento al Manager */
       sInfoedNode = boss.getSSource(); /*   per qualche motivo questa riga è necessaria....TODO:capire perchè*/
       if (sInfoedNode!=null) {

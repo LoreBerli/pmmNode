@@ -19,7 +19,16 @@ public class Loader{
   }
   
   public void build(){ /*costruisce il grafo leggendolo dal JSON*/
-    /*TODO: impiega decisamente troppo */
+    /*TODO: impiega decisamente troppo
+    /* DONE!
+    */
+    
+    //----------
+    int time = millis();
+    int firstLoop=0;
+    int secondLoop=0;
+    int part=0;
+    //----------
     JSONObject tmp;
     Node tmpNode;
     int maxId =0;
@@ -28,28 +37,39 @@ public class Loader{
       tmpNode = boss.addNode(tmp.getInt("id"),tmp.getString("type"),tmp.getString("name"),tmp.getInt("posX"),tmp.getInt("posY"));
       tmpNode.setDescr(tmp.getString("desc"));
     }
+    Node n;
+    Node son;
     for(int i=0;i<config.size();i++){
-      tmp = config.getJSONObject(i);
-      Node n;
-      Node son;
+        
+      tmp = config.getJSONObject(i);    
       int id=tmp.getInt("id");
       n = boss.getNodeById(id);
       if(tmp.getInt("id")>maxId){maxId=tmp.getInt("id");}
       JSONArray sons =tmp.getJSONArray("sons");
       int[] figli = sons.getIntArray();
       for(int s=0;s<sons.size();s++){
+        //-----------
+
+        //-----------
+        
+        firstLoop = millis();     
         boss.setSourceNode(n);
+
         son = boss.getNodeById(figli[s]);
+        
+        part = millis()-firstLoop; 
+        
+        println(i+"esimo ciclo: "+part);
         boss.setNode(son);
         
       }
       boss.flushSel();
       boss.setID(maxId);
-//      for(int s=0;s<tmp.getJSONArray("sons").size();s++){
-//        boss.setSourceNode(
-//      }
       
     }
+    secondLoop = millis()-time;
+      println("tempo totale: "+(secondLoop/1000)+"s");
+
   }
   
   public void save(String sPath){
