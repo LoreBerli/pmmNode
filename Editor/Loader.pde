@@ -19,16 +19,6 @@ public class Loader{
   }
   
   public void build(){ /*costruisce il grafo leggendolo dal JSON*/
-    /*TODO: impiega decisamente troppo
-    /* DONE!
-    */
-    
-    //----------
-    int time = millis();
-    int firstLoop=0;
-    int secondLoop=0;
-    int part=0;
-    //----------
     JSONObject tmp;
     Node tmpNode;
     int maxId =0;
@@ -47,24 +37,13 @@ public class Loader{
       if(tmp.getInt("id")>maxId){maxId=tmp.getInt("id");}
       JSONArray sons =tmp.getJSONArray("sons");
       int[] figli = sons.getIntArray();
-      for(int s=0;s<sons.size();s++){
-        //-----------
-
-        //-----------
-        
-        firstLoop = millis();     
+      for(int s=0;s<sons.size();s++){    
         boss.setSourceNode(n);
-
         son = boss.getNodeById(figli[s]);
-        
-        part = millis()-firstLoop; 
-        
-        println(i+"esimo ciclo: "+part);
-        boss.setNode(son);
-        
+        boss.setNode(son);        
       }
       boss.flushSel();
-      boss.setID(maxId);
+      boss.setID(maxId+1);
       
     }
     secondLoop = millis()-time;

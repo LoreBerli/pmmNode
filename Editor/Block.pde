@@ -39,6 +39,10 @@ public class Block extends Node {
     //if(overed){k=4;}
     rect(posX, posY, k+SIZE*2, SIZE+k);
     ellipse(this.posX+SIZE*2, this.posY+SIZE/2, 4, 4);
+    
+    fill(stateColor()[0]-20,stateColor()[1]-20,stateColor()[2]-20);
+    rect(posX+10,posY+10,k+SIZE*2,SIZE+k);
+    
     //    if(selected){
     //    Node s;
     //    if (sons.size() > 0){
