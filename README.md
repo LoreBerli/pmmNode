@@ -1,7 +1,14 @@
 # pmmNode
+
 #About
 A suite made of :
-  An editor for graphical-programming. Processing
-  A nodeJS server
-  An arduino client
+
+  1.An editor for graphical-programming. Processing
+  
+  2.A nodeJS server.
+  
+  3.An arduino client.
+  
+
+#Screenshots
 ![alt text](Editor/editor.png "Screenshot")
