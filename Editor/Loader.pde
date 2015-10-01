@@ -46,8 +46,7 @@ public class Loader{
       boss.setID(maxId+1);
       
     }
-    secondLoop = millis()-time;
-      println("tempo totale: "+(secondLoop/1000)+"s");
+
 
   }
   

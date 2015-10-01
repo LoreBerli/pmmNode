@@ -154,8 +154,6 @@ public class Node{
     stroke(stateColor()[0],stateColor()[1],stateColor()[2]);
     //if(overed){k=4;}
     rect(posX,posY,k+SIZE*2,SIZE+k);
-    fill(stateColor()[0]-20,stateColor()[1]-20,stateColor()[2]-20);
-    rect(posX+10,posY+10,k+SIZE*2,SIZE+k);
     
 //    if(selected){
 //    Node s;
