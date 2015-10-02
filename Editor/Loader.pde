@@ -55,36 +55,55 @@ public class Loader{
     JSONObject ogesu;
     JSONArray saveFile=new JSONArray();
     JSONObject tmp;
+    for(Node n: boss.getNodes()){
+     tmp = n.getJSON();      
+     saveFile.setJSONObject(saveFile.size(),tmp);  
+    }
+    frame.setTitle("EDITOR Noduino - "+sPath);
+    saveJSONArray(saveFile,sPath);
+    treeBuilder();
+  }
+  
+  public void treeBuilder(){
+    JSONArray tree=new JSONArray();
+    JSONArray tmpAct=new JSONArray();
+    JSONObject tmpChild;
+    Node tmp;
+    ArrayList<Node> actuators= new ArrayList<Node>(0);
     
-    Node tmpNode;
-    for(int i=0;i<boss.getNodes().size();i++){
-      tmp = new JSONObject();
-      tmpNode = boss.getNodes().get(i);
-      tmp.setInt("id",tmpNode.getId());
-      tmp.setInt("pin",tmpNode.getPin());
-      tmp.setString("desc",tmpNode.getDescr());
-      tmp.setString("name",tmpNode.getName());
-      tmp.setString("type",tmpNode.getType());
-      tmp.setInt("posX",tmpNode.getX());
-      tmp.setInt("posY",tmpNode.getY());
-      JSONArray sons = new JSONArray();
-      for(int j=0;j<tmpNode.getSons().size();j++){
-        sons.setInt(j,tmpNode.getSons().get(j).getId());
-      }
-      tmp.setJSONArray("sons",sons);      
-      JSONArray fathers = new JSONArray();
-      for(int j=0;j<tmpNode.getFathers().size();j++){
-        fathers.setInt(j,tmpNode.getFathers().get(j).getId());
-      }
-      tmp.setJSONArray("fathers",fathers);
+    for(Node n:boss.getNodes()){
+       if(n.getType()=="ACTU"){
+         actuators.add(n);
+       }
+    }
+    for(Node act: actuators){
       
-     saveFile.setJSONObject(i,tmp);
+      ArrayList<Node> queue=new ArrayList<Node>(0);
+      
+      ListIterator<Node> it =queue.listIterator();
+      queue.add(act);
+      int i=0;
+      while(i<queue.size())
+      {
+        tmp = queue.get(i);
+        println("-"+tmp.getJSON());
+        tmpAct.setJSONObject(tmpAct.size(),tmp.getTJSON());
+        for(Node s:tmp.getFathers()){
+              println("---------------------"+s.getTJSON());
+              queue.add(s);
+              println("Aggiunto:"+s.getName()+" ADESSO:[SIZE:"+queue.size()+"]");
+              
+            }
+
+        queue.remove(i);        
+      }
+      
+      tree.setJSONArray(tree.size(),tmpAct);
       
       
       
     }
-    frame.setTitle("EDITOR Noduino - "+sPath);
-    saveJSONArray(saveFile,sPath);
+    saveJSONArray(tree,"tree.json");
   }
 
   }

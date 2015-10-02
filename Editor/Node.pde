@@ -39,6 +39,46 @@ public class Node{
   public void setPin(int p){pin = p;}
   public void setName(String name){
     this.name = name;}
+  
+  public JSONObject getJSON(){
+    JSONObject JSONNode = new JSONObject();
+    JSONNode.setInt("id",this.getId());
+    JSONNode.setInt("pin",this.getPin());
+    JSONNode.setString("desc",this.getDescr());
+    JSONNode.setString("name",this.getName());
+    JSONNode.setString("type",this.getType());
+    JSONNode.setInt("posX",this.getX());
+    JSONNode.setInt("posY",this.getY());
+    JSONArray sons = new JSONArray();
+      for(int j=0;j<this.getSons().size();j++){
+        sons.setInt(j,this.getSons().get(j).getId());
+      }
+    JSONNode.setJSONArray("sons",sons);      
+      JSONArray fathers = new JSONArray();
+      for(int j=0;j<this.getFathers().size();j++){
+        fathers.setInt(j,this.getFathers().get(j).getId());
+      }
+    JSONNode.setJSONArray("fathers",fathers);
+      
+    
+    return JSONNode;
+  }
+  
+  
+  public JSONObject getTJSON(){
+    JSONObject JSONNode = new JSONObject();
+    JSONNode.setInt("id",this.getId());
+    JSONNode.setString("type",this.getType());     
+      JSONArray fathers = new JSONArray();
+      for(int j=0;j<this.getFathers().size();j++){
+        fathers.setInt(j,this.getFathers().get(j).getId());
+      }
+    JSONNode.setJSONArray("children",fathers);
+      
+    
+    return JSONNode;
+  }
+  
   /*---------------------------------------------*/
   public Node getFather(int i){return fathers.get(i);}
   public Node getSon(int i){return sons.get(i);}
