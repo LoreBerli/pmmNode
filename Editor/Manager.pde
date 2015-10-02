@@ -65,14 +65,14 @@ public class Manager {
   public Node addNode(String type, String name) {//si occupa di chiamare la factory,dare un ID consistente con gli altri e aggiungerlo all'arraylist
     int id = lastID;
     lastID++;
-    Node n = nFactory.getNode(type, name, id, 100, 100);
+    Node n = nFactory.getNode(type, name,id, id, 100, 100);
     nodes.add(n);
     visual.addToBuff(n);//Eliminabile(?)
     return n;
   }
 
-  public Node addNode(int id, String type, String name, int x, int y) {//prevede i parametri ID (follleee!),ed X,Y
-    Node n = nFactory.getNode(type, name, id, x, y);
+  public Node addNode(int id,int pin, String type, String name, int x, int y) {//prevede i parametri ID (follleee!),ed X,Y
+    Node n = nFactory.getNode(type, name,pin, id, x, y);
     nodes.add(n);
     visual.addToBuff(n);
     return n;

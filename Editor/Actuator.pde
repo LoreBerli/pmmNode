@@ -1,6 +1,6 @@
 public class Actuator extends Node {
-  public Actuator(int id, int posX, int posY, String name) {
-    super(id, posX, posY, name);
+  public Actuator(int id, int pin,int posX, int posY, String name) {
+    super(id,pin, posX, posY, name);
   }
 
 

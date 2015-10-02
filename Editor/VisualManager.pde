@@ -64,13 +64,13 @@ public class VisualManager{
      }
   }
   public void majorDraw(){
-    stroke(0,0,100);
+    stroke(0,0,120);
     background(15);
     fill(0,0,50);
-    rect(0,0,1024,100);
+    rect(0,0,1024,120);
     
     strokeWeight(4);
-    line(0,100,1024,100);
+    line(0,120,1024,120);
     Node tmp;
     for (int i=0; i<nodes.size(); i++) {
        nodes.get(i).drawNode(0);

@@ -1,6 +1,7 @@
 public class Node{
   /* TODO: aggiungere supporto per diversi tipi di Nodo sensore   */
   protected int id;
+  protected int pin;
   protected ArrayList<Node> fathers;
   protected ArrayList<Node> sons;
   protected int posX;
@@ -14,10 +15,11 @@ public class Node{
   protected boolean overed;
   protected String COM;
   
-  public Node(int id,int posX,int posY,String name){
+  public Node(int id,int pin,int posX,int posY,String name){
     fathers = new ArrayList<Node>(0);
     sons=new ArrayList<Node>(0);
     this.id=id;
+    this.pin = pin;
     this.posX = posX;
     this.posY = posY;
     this.name = name;
@@ -29,10 +31,12 @@ public class Node{
     
   }
   public String getType(){return "node";}
+  public int getPin(){return pin;}
   public String getDescr(){return functionDescription;}
   public void setDescr(String s){functionDescription = s;}
   public String getCOM(){return COM;}
   public void setCom(String s){COM = s;}
+  public void setPin(int p){pin = p;}
   public void setName(String name){
     this.name = name;}
   /*---------------------------------------------*/

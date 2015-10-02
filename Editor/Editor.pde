@@ -9,6 +9,7 @@ public Parser parser;
 //---------------GUI------------------
 Textfield nameText;     //casella testo Nome nodo
 Textfield comText;      //casella testo COM nodo
+Textfield pinText;      //casella testo Pin nodo
 Textfield descText;     //casella testo Descrizione nodo
 Textfield loadPath;     //casella testo carica configurazione
 Textfield savePath;     //casella testo salva configurazione
@@ -37,6 +38,7 @@ void setup() {
   save =  cp5.addButton("Salva", 0.0, 958, 38, 64, 20);
   nameText = cp5.addTextfield("name").setPosition(4, 38).setSize(80, 20).setColor(color(0)).setColorBackground(color(255));
   comText = cp5.addTextfield("COM").setPosition(88, 38).setSize(60, 20).setColor(color(0)).setColorBackground(color(255));
+  pinText = cp5.addTextfield("Pin").setPosition(88, 80).setSize(60, 20).setColor(color(0)).setColorBackground(color(255));
   descText = cp5.addTextfield("Description").setPosition(152, 38).setSize(188, 20).setColor(color(0)).setColorBackground(color(255));
   //cp5.addButton("Carica Funzioni", 1.0, 206, 2, 64, 32);
   testo = cp5.addTextarea("txt").setPosition(346, 2).setSize(100, 90).setLineHeight(10).setColor(color(0)).setColorBackground(color(255));
@@ -122,6 +124,7 @@ void draw() {//TODO tutto il vidBuff è obsoleto, devo refreshare tutto comunque
       nameText.clear();
       comText.clear();                 /*  Svuoto le caselle di testo  */
       descText.clear();
+      pinText.clear();
       delay(100);
       boss.setNode(tmp);               /*   passo il riferimento al Manager */
       sInfoedNode = boss.getSSource(); /*   per qualche motivo questa riga è necessaria....TODO:capire perchè*/
@@ -129,6 +132,7 @@ void draw() {//TODO tutto il vidBuff è obsoleto, devo refreshare tutto comunque
         nameText.setText(sInfoedNode.name);
         comText.setText(sInfoedNode.getCOM());/*   riempio le caselle di testo con le info sul nodo */
         descText.setText(sInfoedNode.getDescr());
+        pinText.setText(Integer.toString(sInfoedNode.getPin()));
       }
     }
 
@@ -140,16 +144,18 @@ void draw() {//TODO tutto il vidBuff è obsoleto, devo refreshare tutto comunque
       boss.setOvered(tmp);//se il puntatore collide con un nodo MA nessun bottone è premuto poni Node.overed a true.
     }
   } else {//ramo in cui tmp è nullo => il puntatore non collide con niente.
-    if (mousePressed &&(mouseButton == LEFT) && mouseY > 100) {//se premo col sinistro fuori dal pannello(y>100)
+    if (mousePressed &&(mouseButton == LEFT) && mouseY > 120) {//se premo col sinistro fuori dal pannello(y>100)
       if (sInfoedNode!=null) {                               /*.....???wtf */
         sInfoedNode.setFunctionDesc(descText.getText());     /*.....???wtf */
-        sInfoedNode.setCom(comText.getText());               /*.....???wtf */
+        sInfoedNode.setCom(comText.getText());   
+        sInfoedNode.setPin(Integer.parseInt(pinText.getText()));        /*.....???wtf */
         boss.renameNode(sInfoedNode, nameText.getText());    /*.....???wtf */
       }
 
       nameText.clear();
       comText.clear();  /* svuoto le caselle di testo  */
       descText.clear();
+      pinText.clear();
       boss.flushSel();  /* svuoto il riferimento a nodi selezionati */ 
       visual.majorDraw();
     }

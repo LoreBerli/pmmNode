@@ -24,7 +24,7 @@ public class Loader{
     int maxId =0;
     for(int i=0;i<config.size();i++){
       tmp = config.getJSONObject(i);
-      tmpNode = boss.addNode(tmp.getInt("id"),tmp.getString("type"),tmp.getString("name"),tmp.getInt("posX"),tmp.getInt("posY"));
+      tmpNode = boss.addNode(tmp.getInt("id"),tmp.getInt("pin"),tmp.getString("type"),tmp.getString("name"),tmp.getInt("posX"),tmp.getInt("posY"));
       tmpNode.setDescr(tmp.getString("desc"));
     }
     Node n;
@@ -53,7 +53,7 @@ public class Loader{
   public void save(String sPath){
     /*{"id":1,"name":"block1","type":"BLOC","posX":300,"posY":200,"sons":[2,3],"fathers":[0]},*/
     JSONObject ogesu;
-    JSONArray config=new JSONArray();
+    JSONArray saveFile=new JSONArray();
     JSONObject tmp;
     
     Node tmpNode;
@@ -61,7 +61,7 @@ public class Loader{
       tmp = new JSONObject();
       tmpNode = boss.getNodes().get(i);
       tmp.setInt("id",tmpNode.getId());
-      
+      tmp.setInt("pin",tmpNode.getPin());
       tmp.setString("desc",tmpNode.getDescr());
       tmp.setString("name",tmpNode.getName());
       tmp.setString("type",tmpNode.getType());
@@ -78,12 +78,13 @@ public class Loader{
       }
       tmp.setJSONArray("fathers",fathers);
       
-      config.setJSONObject(i,tmp);
+     saveFile.setJSONObject(i,tmp);
       
       
       
     }
     frame.setTitle("EDITOR Noduino - "+sPath);
-    saveJSONArray(config,sPath);
+    saveJSONArray(saveFile,sPath);
   }
+
   }

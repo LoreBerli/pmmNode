@@ -3,8 +3,8 @@ public class Block extends Node {
 
   int functionParameters;
 
-  public Block(int id, int posX, int posY, String name) {
-    super(id, posX, posY, name);
+  public Block(int id,int pin, int posX, int posY, String name) {
+    super(id,pin, posX, posY, name);
     functionName="foo";
     functionParameters=3;
     this.COM = "none";
