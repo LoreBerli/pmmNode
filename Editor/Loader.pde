@@ -86,12 +86,12 @@ public class Loader{
       while(i<queue.size())
       {
         tmp = queue.get(i);
-        println("-"+tmp.getJSON());
+
         tmpAct.setJSONObject(tmpAct.size(),tmp.getTJSON());
         for(Node s:tmp.getFathers()){
-              println("---------------------"+s.getTJSON());
+
               queue.add(s);
-              println("Aggiunto:"+s.getName()+" ADESSO:[SIZE:"+queue.size()+"]");
+
               
             }
 
@@ -104,6 +104,57 @@ public class Loader{
       
     }
     saveJSONArray(tree,"tree.json");
+    sensorsBuilder();
+  }
+  
+  public void sensorsBuilder(){
+    //{"id" : "2" , "tag" : "sensore1" , "COM" : "COM2" , "pin" : 0, "actuators" : ["A1", "A2", "A3"]} ,
+    JSONArray tree=new JSONArray();
+    
+    JSONObject tmpChild;
+    Node tmp;
+    ArrayList<Node> sensors= new ArrayList<Node>(0);
+    
+    for(Node n:boss.getNodes()){
+       if(n.getType()=="SENS"){
+         sensors.add(n);
+         println("---------------------"+n.getTJSON());
+       }
+    }
+    for(Node sen: sensors){
+      JSONObject tmpSen=new JSONObject();
+      JSONArray actus  =new JSONArray(); //attuatori relativi al sensore sen
+      ArrayList<Node> queue=new ArrayList<Node>(0);
+      
+      ListIterator<Node> it =queue.listIterator();
+      queue.add(sen);
+      int i=0;
+      while(i<queue.size())
+      {
+        tmp = queue.get(i);
+//      tmpAct.setJSONObject(tmpAct.size(),tmp.getTJSON());
+        for(Node s:tmp.getSons()){
+              println(s.getJSON());
+              queue.add(s);
+              if(s.getType()=="ACTU"){
+                println("appended!");
+                actus.append(s.getId());}
+              
+            }
+
+        queue.remove(i);        
+      }
+      tmpSen.setInt("id",sen.getId());
+      tmpSen.setString("name",sen.getName());
+      tmpSen.setString("com",sen.getCOM());
+      tmpSen.setInt("pin",sen.getPin());
+      tmpSen.setJSONArray("actuators",actus);
+      tree.append(tmpSen);
+      
+      
+      
+    }
+    saveJSONArray(tree,"sensors.json");
   }
 
   }
