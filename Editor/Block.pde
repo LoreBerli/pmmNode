@@ -1,34 +1,54 @@
 public class Block extends Node {
   String functionName;
-
-  int functionParameters;
+  int specialParam;
+  int inputs;
 
   public Block(int id,int pin, int posX, int posY, String name) {
-    super(id,pin, posX, posY, name);
-    functionName="foo";
-    functionParameters=3;
-    this.COM = "none";
+    super(id,99, posX, posY, name,"none");
+    
+    functionName=name;
+    inputs=3;
   }
 
+  public JSONObject getTJSON(){
+    JSONObject JSONNode = new JSONObject();
+    JSONNode.setInt("id",this.getId());
+    JSONNode.setString("type",this.getType());
+    JSONNode.setString("function",this.getFunctionName());
+      JSONArray fathers = new JSONArray();
+      for(int j=0;j<this.getFathers().size();j++){
+        fathers.setInt(j,this.getFathers().get(j).getId());
+      }
+    JSONNode.setJSONArray("children",fathers);
+
+
+    return JSONNode;
+  }
+
+
+  public int getVal(){return specialParam;}
+  public void setVal(int special){specialParam=special;}
   public void addFather(Node n) {
-    if (this.fathers.size()==functionParameters) {
+    if (this.fathers.size()==inputs) {
       fathers.remove(0);
     }
     fathers.add(n);
   }
 
   public void setParams(int j) {
-    functionParameters = j;
+    inputs = j;
   }
   public void setFunctionName(String s) {
     functionName = s;
   }
+  
+  public String getFunctionName(){return functionName;}
   public String getType() {
     return "BLOC";
   }
 
   public void drawNode(int k) {
-    /*AHAHAH..ahah...ahh....*/
+    /*AHAHAH..ahah...ahh.......a.*/
     int thk=1;
     if (overed) {
       thk=4;
@@ -84,7 +104,7 @@ public class Block extends Node {
 
     
     text("ID:"+Integer.toString(id), posX+5, posY+10);
-    text("#:"+Integer.toString(functionParameters), posX+SIZE*2-20, posY+10);
+    text("#:"+Integer.toString(inputs), posX+SIZE*2-20, posY+10);
     if(SIZE>31){
       text(name, posX+5, posY+20);
       

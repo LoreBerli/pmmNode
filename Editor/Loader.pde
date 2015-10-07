@@ -24,7 +24,7 @@ public class Loader{
     int maxId =0;
     for(int i=0;i<config.size();i++){
       tmp = config.getJSONObject(i);
-      tmpNode = boss.addNode(tmp.getInt("id"),tmp.getInt("pin"),tmp.getString("type"),tmp.getString("name"),tmp.getInt("posX"),tmp.getInt("posY"));
+      tmpNode = boss.addNode(tmp.getInt("id"),tmp.getInt("pin"),tmp.getString("type"),tmp.getString("name"),tmp.getInt("posX"),tmp.getInt("posY"),tmp.getString("COM"));
       tmpNode.setDescr(tmp.getString("desc"));
     }
     Node n;
@@ -62,6 +62,8 @@ public class Loader{
     frame.setTitle("EDITOR Noduino - "+sPath);
     saveJSONArray(saveFile,sPath);
     treeBuilder();
+    sensorsBuilder();
+    //actuatorsBuilder();
   }
   
   public void treeBuilder(){
@@ -104,7 +106,7 @@ public class Loader{
       
     }
     saveJSONArray(tree,"tree.json");
-    sensorsBuilder();
+    
   }
   
   public void sensorsBuilder(){
@@ -158,3 +160,55 @@ public class Loader{
   }
 
   }
+  
+//  public void actuatorsBuilder(){
+//    //{"id" : "2" , "tag" : "sensore1" , "COM" : "COM2" , "pin" : 0, "actuators" : ["A1", "A2", "A3"]} ,
+//    JSONArray tree=new JSONArray();
+//    
+//    JSONObject tmpChild;
+//    Node tmp;
+//    ArrayList<Node> actuators= new ArrayList<Node>(0);
+//    
+//    for(Node n:boss.getNodes()){
+//       if(n.getType()=="ACTU"){
+//         actuators.add(n);
+//         println("---------------------"+n.getTJSON());
+//       }
+//    }
+//    for(Node sen: sensors){
+//      JSONObject tmpSen=new JSONObject();
+//      JSONArray actus  =new JSONArray(); //attuatori relativi al sensore sen
+//      ArrayList<Node> queue=new ArrayList<Node>(0);
+//      
+//      ListIterator<Node> it =queue.listIterator();
+//      queue.add(sen);
+//      int i=0;
+//      while(i<queue.size())
+//      {
+//        tmp = queue.get(i);
+////      tmpAct.setJSONObject(tmpAct.size(),tmp.getTJSON());
+//        for(Node s:tmp.getSons()){
+//              println(s.getJSON());
+//              queue.add(s);
+//              if(s.getType()=="ACTU"){
+//                println("appended!");
+//                actus.append(s.getId());}
+//              
+//            }
+//
+//        queue.remove(i);        
+//      }
+//      tmpSen.setInt("id",sen.getId());
+//      tmpSen.setString("name",sen.getName());
+//      tmpSen.setString("com",sen.getCOM());
+//      tmpSen.setInt("pin",sen.getPin());
+//      tmpSen.setJSONArray("actuators",actus);
+//      tree.append(tmpSen);
+//      
+//      
+//      
+//    }
+//    saveJSONArray(tree,"sensors.json");
+//  }
+//
+//  }

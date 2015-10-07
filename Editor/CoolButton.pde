@@ -15,6 +15,7 @@ public class CoolButton implements CallbackListener{
             Block tmpNode;
             tmpNode =(Block)boss.addNode("BLOC",tmp.getString("name"));
             tmpNode.setParams(tmp.getInt("param"));
+            println("blocco:"+tmp.getString("name")+"param:"+tmp.getInt("param"));
             tmpNode.setFunctionDesc(tmp.getString("descr"));
             tmpNode.setFunctionName(tmp.getString("name"));
             boss.relocation(tmpNode);

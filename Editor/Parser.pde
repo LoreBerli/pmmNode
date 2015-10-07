@@ -34,7 +34,7 @@ public class Parser{
        
        for(int i=0;i<funcs.size();i++){
        tmp = funcs.getJSONObject(i);
-       btn = controller.addButton(tmp.getString("name"),1.0,452+42*(i%8),2+32*(i/8),40,30);//non ti curar di noi.Girone dei MAGIC NUMBERS
+       btn = controller.addButton(tmp.getString("name"),1.0,452+58*(i%6),2+32*(i/6),54,30);//non ti curar di noi.Girone dei MAGIC NUMBERS
        btns[i] = btn;
        btn.setValue(i);
        btn.addCallback(new CoolButton(tmp));

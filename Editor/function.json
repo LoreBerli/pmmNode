@@ -1,13 +1,13 @@
 [
-	{"name":"AND" ,"param":2, "descr":"AND logico"},
-	{"name":"OR" ,"param":2, "descr":"OR logico"},
-	{"name":"NOT" ,"param":1, "descr":"NOT logico"},
-	{"name":">" ,"param":2, "descr":"GREATER THAN logico"},
-	{"name":"<" ,"param":2, "descr":"LESS THAN logico"},
-	{"name":"SUM" ,"param":2, "descr":"SOMMA"},
-	{"name":"MULTIPLY" ,"param":2, "descr":"MOLTIPLICAZIONE"},
-	{"name":"SOGLIA" ,"param":1, "descr":"Blocco SOGLIA"},
-	{"name":"SUBTRACT" ,"param":2, "descr":"SOTTRAZIONE"},
-	{"name":"MAX" ,"param":2, "descr":"MASSIMO"},
-	{"name":"MIN" ,"param":2, "descr":"MINIMO"}
+	{"name":"and" ,"param":2, "descr":"AND logico"},
+	{"name":"or" ,"param":2, "descr":"OR logico"},
+	{"name":"not" ,"param":1, "descr":"NOT logico"},
+	{"name":"greaterThan" ,"param":2, "descr":"GREATER THAN logico"},
+	{"name":"lesserThan" ,"param":2, "descr":"LESS THAN logico"},
+	{"name":"sum" ,"param":2, "descr":"SOMMA"},
+	{"name":"multiply" ,"param":2, "descr":"MOLTIPLICAZIONE"},
+	{"name":"threshold" ,"param":1, "descr":"Blocco SOGLIA"},
+	{"name":"subtract" ,"param":2, "descr":"SOTTRAZIONE"},
+	{"name":"max" ,"param":2, "descr":"MASSIMO"},
+	{"name":"min" ,"param":2, "descr":"MINIMO"}
 ]
