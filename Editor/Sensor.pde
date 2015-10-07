@@ -1,7 +1,7 @@
 public class Sensor extends Node{
   
-  public Sensor(int id,int pin,int posX,int posY,String name){
-    super(id,pin,posX,posY,name);
+  public Sensor(int id,int pin,int posX,int posY,String name,String COM){
+    super(id,pin,posX,posY,name,COM);
     
   }
   public String getType(){return "SENS";}
