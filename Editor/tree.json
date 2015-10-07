@@ -1,0 +1,124 @@
+[
+  [
+    {
+      "id": 5,
+      "children": [3],
+      "type": "ACTU"
+    },
+    {
+      "id": 3,
+      "children": [
+        0,
+        1
+      ],
+      "type": "BLOC"
+    },
+    {
+      "id": 0,
+      "children": [],
+      "type": "SENS"
+    },
+    {
+      "id": 1,
+      "children": [],
+      "type": "SENS"
+    },
+    {
+      "id": 6,
+      "children": [4],
+      "type": "ACTU"
+    },
+    {
+      "id": 4,
+      "children": [
+        2,
+        3
+      ],
+      "type": "BLOC"
+    },
+    {
+      "id": 2,
+      "children": [],
+      "type": "SENS"
+    },
+    {
+      "id": 3,
+      "children": [
+        0,
+        1
+      ],
+      "type": "BLOC"
+    },
+    {
+      "id": 0,
+      "children": [],
+      "type": "SENS"
+    },
+    {
+      "id": 1,
+      "children": [],
+      "type": "SENS"
+    }
+  ],
+  [
+    {
+      "id": 5,
+      "children": [3],
+      "type": "ACTU"
+    },
+    {
+      "id": 3,
+      "children": [
+        0,
+        1
+      ],
+      "type": "BLOC"
+    },
+    {
+      "id": 0,
+      "children": [],
+      "type": "SENS"
+    },
+    {
+      "id": 1,
+      "children": [],
+      "type": "SENS"
+    },
+    {
+      "id": 6,
+      "children": [4],
+      "type": "ACTU"
+    },
+    {
+      "id": 4,
+      "children": [
+        2,
+        3
+      ],
+      "type": "BLOC"
+    },
+    {
+      "id": 2,
+      "children": [],
+      "type": "SENS"
+    },
+    {
+      "id": 3,
+      "children": [
+        0,
+        1
+      ],
+      "type": "BLOC"
+    },
+    {
+      "id": 0,
+      "children": [],
+      "type": "SENS"
+    },
+    {
+      "id": 1,
+      "children": [],
+      "type": "SENS"
+    }
+  ]
+]
