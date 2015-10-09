@@ -38,7 +38,7 @@ public class Loader{
       JSONArray sons =tmp.getJSONArray("sons");
       int[] figli = sons.getIntArray();
       for(int s=0;s<sons.size();s++){    
-        boss.setSourceNode(n);
+        boss.setSourceNode(n);  
         son = boss.getNodeById(figli[s]);
         boss.setNode(son);        
       }
@@ -105,7 +105,7 @@ public class Loader{
       
       
     }
-    saveJSONArray(tree,"tree.json");
+    saveJSONArray(tree,"trees.json");
     
   }
   
