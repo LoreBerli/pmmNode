@@ -42,7 +42,7 @@ void setup() {
   valText = cp5.addTextfield("value").setPosition(152, 80).setSize(60, 20).setColor(color(0)).setColorBackground(color(255));
   comText = cp5.addTextfield("COM").setPosition(88, 38).setSize(60, 20).setColor(color(0)).setColorBackground(color(255));
   pinText = cp5.addTextfield("Pin").setPosition(88, 80).setSize(60, 20).setColor(color(0)).setColorBackground(color(255));
-  descText = cp5.addTextfield("Description").setPosition(152, 38).setSize(188, 20).setColor(color(0)).setColorBackground(color(255));
+  descText = cp5.addTextfield("Type").setPosition(152, 38).setSize(188, 20).setColor(color(0)).setColorBackground(color(255));
   //cp5.addButton("Carica Funzioni", 1.0, 206, 2, 64, 32);
   testo = cp5.addTextarea("txt").setPosition(346, 2).setSize(100, 90).setLineHeight(10).setColor(color(0)).setColorBackground(color(255));
   //----------------------------------

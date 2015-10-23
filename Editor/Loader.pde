@@ -72,6 +72,7 @@ public class Loader{
     JSONObject tmpChild;
     Node tmp;
     ArrayList<Node> actuators= new ArrayList<Node>(0);
+    ArrayList<JSONArray> acts = new ArrayList<JSONArray>(0);
     
     for(Node n:boss.getNodes()){
        if(n.getType()=="ACTU"){
@@ -79,7 +80,7 @@ public class Loader{
        }
     }
     for(Node act: actuators){
-      
+      tmpAct=new JSONArray();
       ArrayList<Node> queue=new ArrayList<Node>(0);
       
       ListIterator<Node> it =queue.listIterator();
@@ -91,16 +92,21 @@ public class Loader{
 
         tmpAct.setJSONObject(tmpAct.size(),tmp.getTJSON());
         for(Node s:tmp.getFathers()){
-
+              println(queue);
+              println(s);
+              println("-------------");
               queue.add(s);
 
               
             }
-
+        //acts.add(tmpAct);
+        //tree.setJSONArray(tree.size(),tmpAct);
+        println(tmpAct);
         queue.remove(i);        
       }
       
       tree.setJSONArray(tree.size(),tmpAct);
+      
       
       
       
@@ -120,7 +126,7 @@ public class Loader{
     for(Node n:boss.getNodes()){
        if(n.getType()=="SENS"){
          sensors.add(n);
-         println("---------------------"+n.getTJSON());
+         
        }
     }
     for(Node sen: sensors){
@@ -136,10 +142,10 @@ public class Loader{
         tmp = queue.get(i);
 //      tmpAct.setJSONObject(tmpAct.size(),tmp.getTJSON());
         for(Node s:tmp.getSons()){
-              println(s.getJSON());
+              //println(s.getJSON());
               queue.add(s);
               if(s.getType()=="ACTU"){
-                println("appended!");
+                //println("appended!");
                 actus.append(s.getId());}
               
             }
@@ -147,8 +153,9 @@ public class Loader{
         queue.remove(i);        
       }
       tmpSen.setInt("id",sen.getId());
+      tmpSen.setString("desc",sen.getDescr());
       tmpSen.setString("name",sen.getName());
-      tmpSen.setString("com",sen.getCOM());
+      tmpSen.setString("COM",sen.getCOM());
       tmpSen.setInt("pin",sen.getPin());
       tmpSen.setJSONArray("actuators",actus);
       tree.append(tmpSen);
@@ -171,7 +178,7 @@ public class Loader{
     for(Node n:boss.getNodes()){
        if(n.getType()=="ACTU"){
          actuators.add(n);
-         println("---------------------"+n.getTJSON());
+         //println("---------------------"+n.getTJSON());
        }
     }
     for(Node act: actuators){
@@ -187,10 +194,10 @@ public class Loader{
         tmp = queue.get(i);
 //      tmpAct.setJSONObject(tmpAct.size(),tmp.getTJSON());
         for(Node s:tmp.getFathers()){
-              println(s.getJSON());
+              //println(s.getJSON());
               queue.add(s);
               if(s.getType()=="ACTU"){
-                println("appended!");
+                //println("appended!");
                 sens.append(s.getId());}
               
             }
@@ -198,8 +205,9 @@ public class Loader{
         queue.remove(i);        
       }
       tmpAct.setInt("id",act.getId());
+      tmpAct.setString("desc",act.getDescr());
       tmpAct.setString("name",act.getName());
-      tmpAct.setString("com",act.getCOM());
+      tmpAct.setString("COM",act.getCOM());
       tmpAct.setInt("pin",act.getPin());
       tmpAct.setJSONArray("sensors",sens);
       tree.append(tmpAct);

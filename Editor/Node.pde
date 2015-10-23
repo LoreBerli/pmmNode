@@ -71,6 +71,7 @@ public class Node{
     JSONNode.setInt("id",this.getId());
     JSONNode.setString("type",this.getType());
     
+    
       JSONArray fathers = new JSONArray();
       for(int j=0;j<this.getFathers().size();j++){
         fathers.setInt(j,this.getFathers().get(j).getId());

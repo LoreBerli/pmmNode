@@ -13,6 +13,7 @@ public class Block extends Node {
   public JSONObject getTJSON(){
     JSONObject JSONNode = new JSONObject();
     JSONNode.setInt("id",this.getId());
+    JSONNode.setInt("value",this.getVal());
     JSONNode.setString("type",this.getType());
     JSONNode.setString("function",this.getFunctionName());
       JSONArray fathers = new JSONArray();
@@ -48,11 +49,14 @@ public class Block extends Node {
   }
 
   public void drawNode(int k) {
-    /*AHAHAH..ahah...ahh.......a.*/
     int thk=1;
+    if(selected){
+      thk=2;  
+    }
     if (overed) {
       thk=4;
     }
+    
     strokeWeight(thk);
     fill(stateColor()[0], stateColor()[1], stateColor()[2]);
     stroke(stateColor()[0], stateColor()[1], stateColor()[2]);
